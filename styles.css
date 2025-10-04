@@ -1,0 +1,372 @@
+/* ===================================================================
+   HELLO WORLD LANDING PAGE STYLES
+   Senior-level CSS architecture with custom properties and BEM methodology
+   =================================================================== */
+
+/* ===================================================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   =================================================================== */
+:root {
+  /* Color Palette */
+  --color-primary: #667eea;
+  --color-secondary: #764ba2;
+  --color-accent-1: #ff6b6b;
+  --color-accent-2: #feca57;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Opacity Values */
+  --opacity-glass: 0.1;
+  --opacity-border: 0.2;
+  --opacity-text-muted: 0.8;
+  --opacity-text-subtitle: 0.9;
+
+  /* Spacing Scale */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
+  /* Typography Scale */
+  --font-size-xs: 1rem;
+  --font-size-sm: 1.1rem;
+  --font-size-md: 1.2rem;
+  --font-size-lg: 1.5rem;
+  --font-size-xl: 2rem;
+  --font-size-2xl: 2.5rem;
+  --font-size-3xl: 3rem;
+  --font-size-4xl: 4rem;
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Border Radius */
+  --radius-sm: 10px;
+  --radius-md: 20px;
+  --radius-lg: 50px;
+
+  /* Shadows */
+  --shadow-text: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --shadow-button: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+  /* Animation Durations */
+  --duration-fast: 0.3s;
+  --duration-normal: 1s;
+  --duration-slow: 2s;
+  --duration-very-slow: 6s;
+
+  /* Z-index Scale */
+  --z-background: 1;
+  --z-content: 2;
+  --z-sparkle: 1000;
+}
+
+/* ===================================================================
+   RESET & BASE STYLES
+   =================================================================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  line-height: 1.6;
+}
+
+/* ===================================================================
+   LAYOUT COMPONENTS
+   =================================================================== */
+.container {
+  text-align: center;
+  color: var(--color-white);
+  position: relative;
+  z-index: var(--z-content);
+}
+
+.welcome-card {
+  background: rgba(255, 255, 255, var(--opacity-glass));
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xl);
+  border: 1px solid rgba(255, 255, 255, var(--opacity-border));
+  box-shadow: var(--shadow-card);
+  animation: fadeInUp var(--duration-normal) ease-out 0.6s both;
+  transition: transform var(--duration-fast) ease;
+}
+
+.welcome-card:hover {
+  transform: translateY(-5px);
+}
+
+/* ===================================================================
+   TYPOGRAPHY COMPONENTS
+   =================================================================== */
+.hello-text {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-sm);
+  text-shadow: var(--shadow-text);
+  animation: fadeInUp var(--duration-normal) ease-out;
+}
+
+.subtitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-light);
+  margin-bottom: var(--spacing-lg);
+  opacity: var(--opacity-text-subtitle);
+  animation: fadeInUp var(--duration-normal) ease-out 0.3s both;
+}
+
+.description {
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+  opacity: var(--opacity-text-muted);
+}
+
+/* ===================================================================
+   INTERACTIVE COMPONENTS
+   =================================================================== */
+.emoji {
+  font-size: var(--font-size-3xl);
+  display: inline-block;
+  animation: bounce var(--duration-slow) infinite;
+}
+
+.cta-button {
+  background: linear-gradient(45deg, var(--color-accent-1), var(--color-accent-2));
+  color: var(--color-white);
+  border: none;
+  padding: 12px 30px;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-button);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+}
+
+.cta-button:focus {
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+}
+
+/* ===================================================================
+   BACKGROUND ANIMATIONS
+   =================================================================== */
+.floating-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: var(--z-background);
+}
+
+.shape {
+  position: absolute;
+  background: rgba(255, 255, 255, var(--opacity-glass));
+  border-radius: 50%;
+  animation: float var(--duration-very-slow) ease-in-out infinite;
+}
+
+.shape:nth-child(1) {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape:nth-child(2) {
+  width: 120px;
+  height: 120px;
+  top: 60%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+.shape:nth-child(3) {
+  width: 60px;
+  height: 60px;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+.shape:nth-child(4) {
+  width: 100px;
+  height: 100px;
+  top: 10%;
+  right: 30%;
+  animation-delay: 1s;
+}
+
+/* ===================================================================
+   KEYFRAME ANIMATIONS
+   =================================================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+/* ===================================================================
+   RESPONSIVE DESIGN
+   =================================================================== */
+
+/* Tablet Styles */
+@media screen and (max-width: 768px) {
+  :root {
+    --font-size-4xl: var(--font-size-2xl);
+    --font-size-lg: var(--font-size-md);
+    --font-size-sm: var(--font-size-xs);
+  }
+
+  .welcome-card {
+    padding: var(--spacing-lg) var(--spacing-md);
+    margin: 0 var(--spacing-sm);
+  }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 480px) {
+  :root {
+    --font-size-4xl: var(--font-size-xl);
+    --font-size-3xl: var(--font-size-xl);
+  }
+
+  .welcome-card {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .shape {
+    display: none; /* Hide floating shapes on mobile for better performance */
+  }
+}
+
+/* High DPI Displays */
+@media screen and (-webkit-min-device-pixel-ratio: 2),
+       screen and (min-resolution: 192dpi) {
+  .welcome-card {
+    backdrop-filter: blur(15px); /* Enhanced blur for retina displays */
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .shape {
+    animation: none;
+  }
+
+  .emoji {
+    animation: none;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #4c63d2;
+    --color-secondary: #5a4b7c;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: var(--color-white) !important;
+    color: var(--color-black) !important;
+  }
+
+  .floating-shapes,
+  .cta-button {
+    display: none !important;
+  }
+
+  .welcome-card {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 1px solid var(--color-black) !important;
+  }
+}
