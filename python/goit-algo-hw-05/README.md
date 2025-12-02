@@ -184,9 +184,3 @@ goit-algo-hw-05/
 ├── article_2.txt               # Test article 2
 └── README.md                   # This file
 ```
-
----
-
-**Requirements:** Python 3.x (standard library only)
-
-**Author:** GoIT Algorithm Course - Homework 05
